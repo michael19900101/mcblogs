@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">kotlindemo</string>
+    <string name="skip">跳转</string>
+    <string name="first_activity">First Activity!</string>
+    <string name="name">姓名</string>
+    <string name="name_value">小明</string>
+    <string name="img">电话</string>
+    <string name="longtext">测试长文字</string>
+    <string name="imagecdes">照片</string>
+    <string name="barrier_text">在栅栏的右边在栅栏的右边</string>
+    <string name="rb_1">RadioButton1</string>
+    <string name="rb_2">RadioButton2</string>
+    <string name="rb_3">RadioButton3</string>
+    <string name="tvchain1">tvchain1</string>
+    <string name="tvchain2">tvchain222222</string>
+    <string name="tvchain3">tvchain3</string>
+</resources>
