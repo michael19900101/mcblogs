@@ -14,4 +14,7 @@
     <string name="tvchain1">tvchain1</string>
     <string name="tvchain2">tvchain222222</string>
     <string name="tvchain3">tvchain3</string>
+    <string name="leak_first_text">第一页</string>
+    <string name="leak_second_text">第二页</string>
+    <string name="btn_leak_jump">跳转</string>
 </resources>
