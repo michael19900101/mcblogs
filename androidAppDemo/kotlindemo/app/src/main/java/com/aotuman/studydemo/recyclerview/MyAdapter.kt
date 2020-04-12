@@ -1,10 +1,10 @@
-package com.aotuman.kotlindemo.recyclerview
+package com.aotuman.studydemo.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.aotuman.kotlindemo.R
+import com.aotuman.studydemo.R
 
 class MyAdapter(private val myDataset: Array<String>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {

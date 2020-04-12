@@ -1,10 +1,10 @@
-package com.aotuman.kotlindemo.recyclerview
+package com.aotuman.studydemo.recyclerview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aotuman.kotlindemo.R
+import com.aotuman.studydemo.R
 
 class RvDemoActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView

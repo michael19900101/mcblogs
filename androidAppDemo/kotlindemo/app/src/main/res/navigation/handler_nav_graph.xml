@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/handlerMainFragment"
-        android:name="com.aotuman.kotlindemo.handler.HandlerMainFragment"
+        android:name="com.aotuman.studydemo.handler.HandlerMainFragment"
         android:label="handler_demo"
         tools:layout="@layout/fragment_handler_main">
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/handlerMethod01Fragment"
-        android:name="com.aotuman.kotlindemo.handler.HandlerMethod01Fragment"
+        android:name="com.aotuman.studydemo.handler.HandlerMethod01Fragment"
         android:label="@string/btn_method1"
         tools:layout="@layout/fragment_handler_method01">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/handlerMethod02Fragment"
-        android:name="com.aotuman.kotlindemo.handler.HandlerMethod02Fragment"
+        android:name="com.aotuman.studydemo.handler.HandlerMethod02Fragment"
         android:label="@string/btn_method2">
         <action
             android:id="@+id/action_handlerMethod02Fragment2_to_handlerMainFragment"
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/handlerMethod03Fragment"
-        android:name="com.aotuman.kotlindemo.handler.HandlerMethod03Fragment"
+        android:name="com.aotuman.studydemo.handler.HandlerMethod03Fragment"
         android:label="@string/btn_method3">
         <action
             android:id="@+id/action_handlerMethod03Fragment_to_handlerMainFragment"

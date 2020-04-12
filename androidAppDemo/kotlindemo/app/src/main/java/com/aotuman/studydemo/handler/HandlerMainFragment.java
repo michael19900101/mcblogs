@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo.handler;
+package com.aotuman.studydemo.handler;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aotuman.kotlindemo.R;
+import com.aotuman.studydemo.R;
 
 /**
  * A simple {@link Fragment} subclass.

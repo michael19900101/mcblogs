@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo
+package com.aotuman.studydemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

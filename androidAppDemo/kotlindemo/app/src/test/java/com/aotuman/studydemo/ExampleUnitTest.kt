@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo
+package com.aotuman.studydemo
 
 import org.junit.Test
 

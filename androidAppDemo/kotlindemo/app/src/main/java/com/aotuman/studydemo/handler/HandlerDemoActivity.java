@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo.handler;
+package com.aotuman.studydemo.handler;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import com.aotuman.kotlindemo.R;
+import com.aotuman.studydemo.R;
 
 public class HandlerDemoActivity extends AppCompatActivity {
 

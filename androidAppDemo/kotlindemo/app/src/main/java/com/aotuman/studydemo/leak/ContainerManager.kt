@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo.leak
+package com.aotuman.studydemo.leak
 
 class ContainerManager {
 

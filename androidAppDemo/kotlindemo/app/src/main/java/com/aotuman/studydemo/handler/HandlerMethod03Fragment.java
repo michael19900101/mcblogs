@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo.handler;
+package com.aotuman.studydemo.handler;
 
 import android.os.Bundle;
 
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.aotuman.kotlindemo.R;
+import com.aotuman.studydemo.R;
 
 /**
  *  方式3：使用 Handler.post（）

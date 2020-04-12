@@ -1,9 +1,9 @@
-package com.aotuman.kotlindemo.leak
+package com.aotuman.studydemo.leak
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aotuman.kotlindemo.R
+import com.aotuman.studydemo.R
 import kotlinx.android.synthetic.main.activity_leak_first_layout.*
 
 class FirstActivity : AppCompatActivity() , ContainerManager.Companion.DummyListener {

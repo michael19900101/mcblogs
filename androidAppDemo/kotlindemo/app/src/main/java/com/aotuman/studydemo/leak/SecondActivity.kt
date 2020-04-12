@@ -1,8 +1,8 @@
-package com.aotuman.kotlindemo.leak
+package com.aotuman.studydemo.leak
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aotuman.kotlindemo.R
+import com.aotuman.studydemo.R
 
 class SecondActivity: AppCompatActivity() {
 

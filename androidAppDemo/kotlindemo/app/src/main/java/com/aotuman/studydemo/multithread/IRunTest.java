@@ -1,4 +1,4 @@
-package com.aotuman.kotlindemo.multithread;
+package com.aotuman.studydemo.multithread;
 
 public interface IRunTest {
     void runTest();

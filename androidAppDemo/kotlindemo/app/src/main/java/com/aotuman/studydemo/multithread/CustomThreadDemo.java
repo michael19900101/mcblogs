@@ -1,13 +1,13 @@
-package com.aotuman.kotlindemo.multithread;
+package com.aotuman.studydemo.multithread;
 
-public class LooperThreadDemo implements IRunTest {
+public class CustomThreadDemo implements IRunTest {
 
-    LooperThread looperThread = new LooperThread();
+    CustomThread customThread = new CustomThread();
 
     @Override
     public void runTest() {
-        looperThread.start();
-        looperThread.looper.setTask(new Runnable() {
+        customThread.start();
+        customThread.setTask(new Runnable() {
             @Override
             public void run() {
                 System.out.println("run run run");
@@ -18,19 +18,11 @@ public class LooperThreadDemo implements IRunTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        looperThread.looper.quit();
+        customThread.quit();
     }
 
-    class LooperThread extends Thread{
-        Looper looper = new Looper();
+    class CustomThread extends Thread {
 
-        @Override
-        public void run() {
-            looper.loop();
-        }
-    }
-
-    class Looper {
         private Runnable task;
         private boolean quit;
 
@@ -42,7 +34,8 @@ public class LooperThreadDemo implements IRunTest {
             this.quit = true;
         }
 
-        public void loop() {
+        @Override
+        public void run() {
             while (!quit) {
                 synchronized (this) {
                     if (task != null) {
@@ -53,4 +46,5 @@ public class LooperThreadDemo implements IRunTest {
             }
         }
     }
+
 }
