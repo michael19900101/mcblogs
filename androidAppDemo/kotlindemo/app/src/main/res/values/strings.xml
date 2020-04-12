@@ -30,4 +30,17 @@
     Handler使用方式共分为2种：使用Handler.sendMessage（）、使用Handler.post（）\n\n
     在该使用方式中，又分为2种：新建Handler子类（内部类）、匿名 Handler子类
     </string>
+
+    <string name="btn_method4">子线程创建Handler</string>
+    <string name="method04text">
+        在子线程中 ，创建Handler类对象（错误写法）: \n
+        Looper.prepare();\n
+        Handler mHandler = new Handler();\n
+        mHandler.sendMessage(msg);\n
+        Looper.loop();\n
+        但是这只是子线程的handler,不能进行UI操作\n\n
+        在子线程中 ，创建Handler类对象（正确写法）: \n
+        Handler mHandler = new Handler(Looper.getMainLooper());\n
+        mHandler.sendMessage(msg);\n
+    </string>
 </resources>

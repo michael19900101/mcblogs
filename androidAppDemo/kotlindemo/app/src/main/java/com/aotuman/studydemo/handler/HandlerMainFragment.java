@@ -54,5 +54,12 @@ public class HandlerMainFragment extends Fragment {
                 navController.navigate(R.id.action_handlerMainFragment_to_handlerMethod03Fragment);
             }
         });
+        getView().findViewById(R.id.btn_04).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_handlerMainFragment_to_handlerMethod04Fragment);
+            }
+        });
     }
 }
