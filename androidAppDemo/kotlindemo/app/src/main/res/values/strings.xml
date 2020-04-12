@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">kotlindemo</string>
+    <string name="app_name">AndroidStudyDemo</string>
     <string name="skip">跳转</string>
     <string name="first_activity">First Activity!</string>
     <string name="name">姓名</string>
@@ -18,4 +18,16 @@
     <string name="leak_second_text">第二页</string>
     <string name="btn_leak_jump">跳转</string>
     <string name="item_rv_demo_name">TextView</string>
+    <string name="handler_msg">TextView</string>
+
+    <string name="btn_method1">新建Handler子类</string>
+    <string name="btn_method2">匿名Handler子类</string>
+    <string name="btn_method3">Handler.post()</string>
+    <string name="detail_back">返回</string>
+    <string name="handler_desc">
+        使用Handler的原因：将工作线程需操作UI的消息 传递 到主线程，使得主线程可根据工作线程的需求 更新UI，
+        从而避免线程操作不安全的问题。\n\n
+    Handler使用方式共分为2种：使用Handler.sendMessage（）、使用Handler.post（）\n\n
+    在该使用方式中，又分为2种：新建Handler子类（内部类）、匿名 Handler子类
+    </string>
 </resources>
