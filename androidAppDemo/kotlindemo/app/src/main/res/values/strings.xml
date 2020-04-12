@@ -34,13 +34,18 @@
     <string name="btn_method4">子线程创建Handler</string>
     <string name="method04text">
         在子线程中 ，创建Handler类对象（错误写法）: \n
-        Looper.prepare();\n
-        Handler mHandler = new Handler();\n
-        mHandler.sendMessage(msg);\n
-        Looper.loop();\n
+        1.Looper.prepare();\n
+        2.Handler mHandler = new Handler();  (自动关联当前线程的Looper对象,
+        Handler源码:  mLooper = Looper.myLooper();)\n
+        3.mHandler.sendMessage(msg);\n
+        4.Looper.loop();\n
         但是这只是子线程的handler,不能进行UI操作\n\n
         在子线程中 ，创建Handler类对象（正确写法）: \n
-        Handler mHandler = new Handler(Looper.getMainLooper());\n
-        mHandler.sendMessage(msg);\n
+        1.Handler mHandler = new Handler(Looper.getMainLooper());\n
+        2.mHandler.sendMessage(msg);\n\n
+        总结：\n
+        一、主线程的Looper对象自动生成，不需手动生成；而子线程的Looper对象则需手动通过Looper.prepare()创建\n
+        二、在子线程若不手动创建Looper对象 则无法生成Handler对象\n
+        三、根据Handler的作用（在主线程更新UI），故Handler实例的创建场景 主要在主线程
     </string>
 </resources>
