@@ -48,4 +48,17 @@
         二、在子线程若不手动创建Looper对象 则无法生成Handler对象\n
         三、根据Handler的作用（在主线程更新UI），故Handler实例的创建场景 主要在主线程
     </string>
+
+    <string name="handlerresult">测试结果</string>
+    <string name="btn_handlerthread_01">点击延迟1s + 显示我爱学习</string>
+    <string name="btn_handlerthread_02">点击延迟3s + 显示我不爱学习</string>
+    <string name="btn_handlerthread_03">结束线程的消息循环</string>
+    <string name="btn_handlerthread">HandlerThread</string>
+    <string name="tv_handlerthread">
+        主线程要向子线程发送消息，主线程持有子线程的workHandler，利用workHandler发送消息；\n
+        子线程要向主线程发送消息，子线程持有主线程的mainHandler，利用mainHandler发送消息；\n
+
+        HandlerThread的本质：继承Thread类 , 封装Handler类。\n
+        Thread run()方法内部已经有Looper.prepare()和Looper.loop()，我们不用复写
+    </string>
 </resources>

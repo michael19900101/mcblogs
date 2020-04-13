@@ -14,14 +14,9 @@ import android.view.ViewGroup;
 import com.aotuman.studydemo.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Handler demo 主界面
  */
 public class HandlerMainFragment extends Fragment {
-
-    public HandlerMainFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +54,13 @@ public class HandlerMainFragment extends Fragment {
             public void onClick(View view) {
                 NavController navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_handlerMainFragment_to_handlerMethod04Fragment);
+            }
+        });
+        getView().findViewById(R.id.btn_05).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_handlerMainFragment_to_handlerThreadFragment);
             }
         });
     }

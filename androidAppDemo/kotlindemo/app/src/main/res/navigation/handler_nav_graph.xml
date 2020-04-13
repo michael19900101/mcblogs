@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_handlerMainFragment_to_handlerMethod04Fragment"
             app:destination="@id/handlerMethod04Fragment" />
+        <action
+            android:id="@+id/action_handlerMainFragment_to_handlerThreadFragment"
+            app:destination="@id/handlerThreadFragment" />
     </fragment>
     <fragment
         android:id="@+id/handlerMethod01Fragment"
@@ -54,6 +57,15 @@
         android:label="@string/btn_method4">
         <action
             android:id="@+id/action_handlerMethod04Fragment_to_handlerMainFragment"
+            app:destination="@id/handlerMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/handlerThreadFragment"
+        android:name="com.aotuman.studydemo.handler.HandlerThreadFragment"
+        android:label="@string/btn_handlerthread"
+        tools:layout="@layout/fragment_handler_thread">
+        <action
+            android:id="@+id/action_handlerThreadFragment_to_handlerMainFragment"
             app:destination="@id/handlerMainFragment" />
     </fragment>
 </navigation>
