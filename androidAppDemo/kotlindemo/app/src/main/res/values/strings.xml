@@ -61,4 +61,5 @@
         HandlerThread的本质：继承Thread类 , 封装Handler类。\n
         Thread run()方法内部已经有Looper.prepare()和Looper.loop()，我们不用复写
     </string>
+    <string name="compress_image">压缩照片</string>
 </resources>

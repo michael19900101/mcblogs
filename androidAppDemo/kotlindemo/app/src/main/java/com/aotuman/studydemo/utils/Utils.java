@@ -148,8 +148,10 @@ public class Utils {
         BitmapFactory.decodeFile(file.getAbsolutePath(), option);
         int bitmapWidth = option.outWidth;
         int bitmapHeight = option.outHeight;
-        int screenWidth = getScreenWidth();
-        int screenHeight = getScreenHeight();
+//        int screenWidth = getScreenWidth();
+//        int screenHeight = getScreenHeight();
+        int screenWidth = 480;
+        int screenHeight = 800;
         Log.d("jbjb", String.format("[原图宽:%d，高：%d],  [屏幕宽：%d, 高：%d]",
                 bitmapWidth, bitmapHeight, screenWidth, screenHeight));
         int resultWidth = 0;
