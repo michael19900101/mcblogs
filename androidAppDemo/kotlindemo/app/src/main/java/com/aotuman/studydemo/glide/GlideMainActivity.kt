@@ -1,32 +1,37 @@
 package com.aotuman.studydemo.glide
 
-import android.app.AlertDialog
-import android.app.Dialog
+import android.Manifest
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.aotuman.studydemo.PathConstant
 import com.aotuman.studydemo.R
 import com.aotuman.studydemo.glide.transformations.WaterTransformation
-import com.aotuman.studydemo.utils.ApplicationContext.Companion.context
 import com.aotuman.studydemo.utils.Utils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_glide_main.*
 import java.io.File
 
 class GlideMainActivity : AppCompatActivity() {
-
-
+    private var saveFileLength = 90
+    private var needCompress = false
+    private var targetWidth = Utils.getScreenWidth()
+    private var targetHeight = Utils.getScreenHeight()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = "照片压缩"
+        requestPermission()
         setContentView(R.layout.activity_glide_main)
-
         btn_compress.setOnClickListener {
             for (index in 1..7) {
                 compress(index)
@@ -36,15 +41,22 @@ class GlideMainActivity : AppCompatActivity() {
 
     private fun compress(index:Int) {
         val localImageUri = PathConstant.CAMERAPATH + File.separator + index + ".jpg"
-        val saveImageUri = PathConstant.CAMERAPATH + File.separator + "save_"+ index + ".jpg"
+        val saveImageUri = PathConstant.CAMERAPATH + File.separator + "save_"+ index + "_" + targetWidth + "X" + targetHeight + ".jpg"
 //        val dialog: Dialog = AlertDialog.Builder(this)
 //            .setMessage("正在处理图片，请稍候..")
 //            .setTitle("提示")
 //            .create()
 //        dialog.show()
         val waterStr = "我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女"
-        val waterTransformation = WaterTransformation(true, waterStr, saveImageUri, 90)
-        val imageOption = Utils.getImageOption(localImageUri)
+        val waterTransformation = WaterTransformation.Builder()
+            .setAddWater(true)
+            .setWaterStr(waterStr)
+            .setSaveFilePath(saveImageUri)
+            .setSaveFileLength(saveFileLength)
+            .setNeedCompress(needCompress)
+            .bulid()
+
+        val imageOption = Utils.getImageOption(localImageUri, targetWidth, targetHeight)
         var target = object :CustomTarget<Drawable?>() {
 
             override fun onResourceReady(
@@ -67,10 +79,53 @@ class GlideMainActivity : AppCompatActivity() {
             .into(target)
     }
 
-    override fun onStop() {
-        super.onStop()
-        Glide.with(this).clear(glide_image)
-//        Glide.with(this).clear(target)
+    private fun requestPermission() {
+        val rxPermission = RxPermissions(this).also {
+            it
+                .requestEach(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.INTERNET
+                )
+                .subscribe { permission ->
+                    permission?.granted.let {
+                        // 用户已经同意该权限
+                        Log.d("jbjb", permission.name + " is granted.")
+                    }
+                }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.imagesize_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.k_origin -> {
+                needCompress = false
+                true
+            }
+            R.id.k_90 -> {
+                needCompress = true
+                saveFileLength = 90
+                true
+            }
+            R.id.size_screen_w_h -> {
+                targetWidth = Utils.getScreenWidth()
+                targetHeight = Utils.getScreenHeight()
+                true
+            }
+            R.id.size_600_840 -> {
+                targetWidth = 600
+                targetHeight = 840
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     //        Glide.with(this)

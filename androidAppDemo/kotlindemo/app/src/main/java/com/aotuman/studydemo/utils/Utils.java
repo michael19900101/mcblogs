@@ -137,7 +137,7 @@ public class Utils {
         return bitmap.compress(format, quality, stream);
     }
 
-    public static ImageOption getImageOption(String path) {
+    public static ImageOption getImageOption(String path, int targetWidth, int targetHeight) {
         ImageOption imageOption = new ImageOption();
         File file = new File(path);
         if (file == null || file.isDirectory()) {
@@ -148,34 +148,30 @@ public class Utils {
         BitmapFactory.decodeFile(file.getAbsolutePath(), option);
         int bitmapWidth = option.outWidth;
         int bitmapHeight = option.outHeight;
-//        int screenWidth = getScreenWidth();
-//        int screenHeight = getScreenHeight();
-        int screenWidth = 480;
-        int screenHeight = 800;
-        Log.d("jbjb", String.format("[原图宽:%d，高：%d],  [屏幕宽：%d, 高：%d]",
-                bitmapWidth, bitmapHeight, screenWidth, screenHeight));
+        Log.d("jbjb", String.format("[原图宽:%d，高：%d],  [目标宽：%d, 高：%d]",
+                bitmapWidth, bitmapHeight, targetWidth, targetHeight));
         int resultWidth = 0;
         int resultHeight = 0;
-        if (bitmapWidth < screenWidth) {
-            if (bitmapHeight > screenHeight) {
-                resultWidth = screenHeight * bitmapWidth / bitmapHeight;
-                resultHeight = screenHeight;
+        if (bitmapWidth < targetWidth) {
+            if (bitmapHeight > targetHeight) {
+                resultWidth = targetHeight * bitmapWidth / bitmapHeight;
+                resultHeight = targetHeight;
             } else {
                 resultWidth = bitmapWidth;
                 resultHeight = bitmapHeight;
             }
         } else {
-            if (bitmapHeight > screenHeight) {
+            if (bitmapHeight > targetHeight) {
                 if (bitmapWidth > bitmapHeight) {
-                    resultWidth = screenWidth;
-                    resultHeight = screenWidth * bitmapHeight / bitmapWidth;
+                    resultWidth = targetWidth;
+                    resultHeight = targetWidth * bitmapHeight / bitmapWidth;
                 } else {
-                    resultWidth = screenHeight * bitmapWidth / bitmapHeight;
-                    resultHeight = screenHeight;
+                    resultWidth = targetHeight * bitmapWidth / bitmapHeight;
+                    resultHeight = targetHeight;
                 }
             } else {
-                resultWidth = screenWidth;
-                resultHeight = screenWidth * bitmapHeight / bitmapWidth;
+                resultWidth = targetWidth;
+                resultHeight = targetWidth * bitmapHeight / bitmapWidth;
             }
         }
         imageOption.setWidth(resultWidth);

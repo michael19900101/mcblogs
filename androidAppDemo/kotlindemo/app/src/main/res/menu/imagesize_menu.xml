@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/size_choose"
+        app:showAsAction="ifRoom"
+        android:title="尺寸压缩" >
+        <menu>
+            <item
+                android:id="@+id/size_screen_w_h"
+                android:title="屏幕宽X高" />
+            <item
+                android:id="@+id/size_600_840"
+                android:title="600X840" />
+        </menu>
+    </item>
+    <item android:id="@+id/quality_compress"
+        app:showAsAction="ifRoom"
+        android:title="质量压缩">
+        <menu>
+            <item
+                android:id="@+id/k_origin"
+                android:title="不压缩" />
+            <item
+                android:id="@+id/k_90"
+                android:title="90k" />
+        </menu>
+    </item>
+</menu>

@@ -19,32 +19,56 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 
 public class WaterTransformation extends BitmapTransformation {
+    private static TextPaint textPaint;
     private String waterStr;
     private boolean isAddWater;
-    private static TextPaint textPaint;
     private String saveFilePath;
     private int saveFileLength;
+    private boolean needCompress;
 
-    public WaterTransformation(boolean isAddWater, String waterStr, String saveFilePath, int saveFileLength) {
-        this.isAddWater = isAddWater;
-        this.waterStr = waterStr;
-        this.saveFilePath = saveFilePath;
-        this.saveFileLength = saveFileLength;
+    public WaterTransformation(Builder builder) {
+        this.isAddWater = builder.isAddWater;
+        this.waterStr = builder.waterStr;
+        this.saveFilePath = builder.saveFilePath;
+        this.saveFileLength = builder.saveFileLength;
+        this.needCompress = builder.needCompress;
     }
 
-    public WaterTransformation setTextSize(float size) {
-        textPaint.setTextSize(Utils.sp2px(size));
-        return this;
-    }
+    public static class Builder {
+        private String waterStr;
+        private boolean isAddWater;
+        private String saveFilePath;
+        private int saveFileLength;
+        private boolean needCompress;
 
-    public WaterTransformation setAlpha(int alpha) {
-        textPaint.setAlpha(alpha);
-        return this;
-    }
+        public Builder setWaterStr(String waterStr) {
+            this.waterStr = waterStr;
+            return this;
+        }
 
-    public WaterTransformation isSetWater(boolean isAddWater) {
-        this.isAddWater = isAddWater;
-        return this;
+        public Builder setAddWater(boolean addWater) {
+            isAddWater = addWater;
+            return this;
+        }
+
+        public Builder setSaveFilePath(String saveFilePath) {
+            this.saveFilePath = saveFilePath;
+            return this;
+        }
+
+        public Builder setSaveFileLength(int saveFileLength) {
+            this.saveFileLength = saveFileLength;
+            return this;
+        }
+
+        public Builder setNeedCompress(boolean needCompress) {
+            this.needCompress = needCompress;
+            return this;
+        }
+
+        public WaterTransformation bulid() {
+            return new WaterTransformation(this);
+        }
     }
 
     static {
@@ -53,7 +77,6 @@ public class WaterTransformation extends BitmapTransformation {
         textPaint.setAntiAlias(true);
         textPaint.setDither(true);
         textPaint.setFilterBitmap(true);
-
     }
 
     @Override
@@ -97,18 +120,19 @@ public class WaterTransformation extends BitmapTransformation {
         canvas.restore();
 
         Log.e("jbjb","开始保存文件");
-        // 压缩保存文件
-        Utils.compressBitmapToFile(oldBitmap, saveFilePath, saveFileLength);
-
-//        Utils.saveBitmap2file(oldBitmap, saveFilePath);
-
+        if (needCompress) {
+            // 压缩保存文件
+            Utils.compressBitmapToFile(oldBitmap, saveFilePath, saveFileLength);
+        } else {
+            Utils.saveBitmap2file(oldBitmap, saveFilePath);
+        }
         Log.e("jbjb","保存文件成功！");
         return oldBitmap;
     }
 
     @Override
-    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) { //此处去设置唯一标志符
-//        String s = "包名" + waterStr;
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+        //此处去设置唯一标志符
         String s = "com.aotuman.studydemo" + waterStr;
         try {
             s.getBytes(STRING_CHARSET_NAME);
