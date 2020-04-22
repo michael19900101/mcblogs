@@ -86,6 +86,7 @@ public class WaterTransformation extends BitmapTransformation {
     }
 
     private Bitmap addWaterMark(Bitmap oldBitmap) {
+        Log.e("jbjb","oldBitmap内存："+oldBitmap.getAllocationByteCount());
         int bitmapWidth = oldBitmap.getWidth();
         int bitmapHeight = oldBitmap.getHeight();
 

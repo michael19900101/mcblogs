@@ -13,6 +13,7 @@ import com.aotuman.studydemo.R
 import com.aotuman.studydemo.glide.transformations.WaterTransformation
 import com.aotuman.studydemo.utils.Utils
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
@@ -24,8 +25,8 @@ import java.io.File
 class GlideMainActivity : AppCompatActivity() {
     private var saveFileLength = 90
     private var needCompress = false
-    private var targetWidth = Utils.getScreenWidth()
-    private var targetHeight = Utils.getScreenHeight()
+    private var targetWidth = 480
+    private var targetHeight = 800
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,7 @@ class GlideMainActivity : AppCompatActivity() {
         requestPermission()
         setContentView(R.layout.activity_glide_main)
         btn_compress.setOnClickListener {
-            for (index in 1..7) {
+            for (index in 19..20) {
                 compress(index)
             }
         }
@@ -41,7 +42,7 @@ class GlideMainActivity : AppCompatActivity() {
 
     private fun compress(index:Int) {
         val localImageUri = PathConstant.CAMERAPATH + File.separator + index + ".jpg"
-        val saveImageUri = PathConstant.CAMERAPATH + File.separator + "save_"+ index + "_" + targetWidth + "X" + targetHeight + ".jpg"
+        val saveImageUri = PathConstant.ATTACHMENT + File.separator + "save_"+ index + "_" + targetWidth + "X" + targetHeight + ".jpg"
 //        val dialog: Dialog = AlertDialog.Builder(this)
 //            .setMessage("正在处理图片，请稍候..")
 //            .setTitle("提示")
@@ -72,6 +73,7 @@ class GlideMainActivity : AppCompatActivity() {
         }
         Glide.with(this)
             .load(localImageUri)
+            .format(DecodeFormat.PREFER_RGB_565)
             .override(imageOption.width, imageOption.height)
             .apply(RequestOptions.bitmapTransform(waterTransformation))
             .diskCacheStrategy(DiskCacheStrategy.NONE)
