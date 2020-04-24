@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 
 public class Utils {
 
@@ -185,38 +186,38 @@ public class Utils {
      * 压缩图片
      * @return
      */
-    public static void compressBitmapToFile(Bitmap currentBitmap, String saveFilePath, int requireSize)
+    public static void compressBitmapToFile(Bitmap currentBitmap, String saveFilePath, int requireSize, boolean needRecycle)
             throws OutOfMemoryError {
 
         /** ------------ 根据图片方向，作旋转处理 ------------ */
         FileOutputStream fos = null;
-        SoftReference<Bitmap> bitmapSoftReference = null;
+        WeakReference<Bitmap> bitmapWeakReference = null;
         try {
             if (currentBitmap != null) {
-                bitmapSoftReference = new SoftReference<>(currentBitmap);
-                if(bitmapSoftReference.get() != null){
+                bitmapWeakReference = new WeakReference<>(currentBitmap);
+                if(bitmapWeakReference.get() != null){
                     ByteArrayOutputStream oStream = new ByteArrayOutputStream();
-                    bitmapSoftReference.get().compress(Bitmap.CompressFormat.JPEG, 100, oStream);
+                    bitmapWeakReference.get().compress(Bitmap.CompressFormat.JPEG, 100, oStream);
                     //---------------------------------当前文件大小------------------------
-                    Log.d(TAG, "origin byte array size : " + oStream.toByteArray().length / 1024 + "kb");
+                    Log.d(TAG, "origin byte array size : " + oStream.size() / 1024 + "kb");
                     //压缩
                     int quality = 100;
-                    while (oStream.toByteArray().length > (requireSize * 1024) && quality > 10) {
+                    while (oStream.size() > (requireSize * 1024) && quality > 10) {
                         oStream.reset();
                         quality = quality - 5;
-                        if(bitmapSoftReference.get() != null){
-                            bitmapSoftReference.get().compress(Bitmap.CompressFormat.JPEG, quality, oStream);
+                        if(bitmapWeakReference.get() != null){
+                            bitmapWeakReference.get().compress(Bitmap.CompressFormat.JPEG, quality, oStream);
                         }
                     }
-                    Log.d(TAG,"final byte array size : " + oStream.toByteArray().length / 1024 + "kb");
+                    Log.d(TAG,"final byte array size : " + oStream.size() / 1024 + "kb");
 
                     fos = new FileOutputStream(saveFilePath);
                     fos.write(oStream.toByteArray());
                     fos.flush();
                     oStream.close();
-//                    if(bitmapSoftReference != null && bitmapSoftReference.get() != null){
-//                        bitmapSoftReference.get().recycle();
-//                    }
+                    if(needRecycle && bitmapWeakReference != null && bitmapWeakReference.get() != null){
+                        bitmapWeakReference.get().recycle();
+                    }
                 }
             }
         } catch (NullPointerException ex) {
@@ -232,9 +233,9 @@ public class Utils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            if(bitmapSoftReference != null && bitmapSoftReference.get() != null && !bitmapSoftReference.get().isRecycled()){
-//                bitmapSoftReference.get().recycle();
-//            }
+            if(needRecycle && bitmapWeakReference != null && bitmapWeakReference.get() != null && !bitmapWeakReference.get().isRecycled()){
+                bitmapWeakReference.get().recycle();
+            }
         }
     }
 }

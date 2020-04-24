@@ -25,6 +25,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_glide_main.*
 import java.io.File
+import java.lang.Exception
 
 class GlideMainActivity : AppCompatActivity() {
     private var saveFileLength = 90
@@ -39,7 +40,7 @@ class GlideMainActivity : AppCompatActivity() {
         requestPermission2()
         setContentView(R.layout.activity_glide_main)
         btn_compress.setOnClickListener {
-            for (index in 19..20) {
+            for (index in 1 until 2) {
                 compress(index)
             }
         }
@@ -55,11 +56,12 @@ class GlideMainActivity : AppCompatActivity() {
 //        dialog.show()
         val waterStr = "我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女我是美女"
         val waterTransformation = WaterTransformation.Builder()
-            .setAddWater(true)
             .setWaterStr(waterStr)
+            .setWatermarkposition("bottom")
             .setSaveFilePath(saveImageUri)
             .setSaveFileLength(saveFileLength)
             .setNeedCompress(needCompress)
+            .setTransformListener { Toast.makeText(this,"处理照片出错！",Toast.LENGTH_SHORT).show()}
             .bulid()
 
         val imageOption = Utils.getImageOption(localImageUri, targetWidth, targetHeight)
@@ -70,6 +72,7 @@ class GlideMainActivity : AppCompatActivity() {
                 transition: Transition<in Drawable?>?
             ) {
                 Log.e("jbjb","加载完毕")
+                Toast.makeText(this@GlideMainActivity,"处理照片完毕！",Toast.LENGTH_SHORT).show()
 //                dialog.dismiss()
             }
             override fun onLoadCleared(placeholder: Drawable?) {
