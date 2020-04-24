@@ -61,7 +61,11 @@ class GlideMainActivity : AppCompatActivity() {
             .setSaveFilePath(saveImageUri)
             .setSaveFileLength(saveFileLength)
             .setNeedCompress(needCompress)
-            .setTransformListener { Toast.makeText(this,"处理照片出错！",Toast.LENGTH_SHORT).show()}
+            .setTransformListener {
+                // 如果注释掉这行toast提示，就不会有内存泄漏提示，只要匿名内部类不持有外部类的引用，都不会有内存泄漏的风险
+                // 这里就是匿名内部类持有了外部类activity的context，导致内存泄漏，可以结合leakcanary查看
+//                Toast.makeText(this,"处理照片出错！",Toast.LENGTH_SHORT).show()
+            }
             .bulid()
 
         val imageOption = Utils.getImageOption(localImageUri, targetWidth, targetHeight)
@@ -72,14 +76,29 @@ class GlideMainActivity : AppCompatActivity() {
                 transition: Transition<in Drawable?>?
             ) {
                 Log.e("jbjb","加载完毕")
-                Toast.makeText(this@GlideMainActivity,"处理照片完毕！",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@GlideMainActivity,"处理照片完毕！",Toast.LENGTH_SHORT).show()
 //                dialog.dismiss()
             }
             override fun onLoadCleared(placeholder: Drawable?) {
 //                dialog.dismiss()
             }
         }
-        Glide.with(this)
+
+        // 异步线程开启Glide加载，无论with(applicationContext/activity),activity关闭，也会回调到target
+//        Thread(Runnable {
+//            Glide.with(this)
+//            .load(localImageUri)
+//            .format(DecodeFormat.PREFER_RGB_565)
+//            .override(imageOption.width, imageOption.height)
+//            .apply(RequestOptions.bitmapTransform(waterTransformation))
+//            .diskCacheStrategy(DiskCacheStrategy.NONE)
+//            .skipMemoryCache(true)
+//            .into(target)
+//        }).start()
+
+        // 主线程开启Glide加载，with(activity),activity关闭，不会回调到traget
+        // with(applicationContext)，activity关闭，不会回调到target，但是还是执行transform,还是会压缩照片
+        Glide.with(applicationContext)
             .load(localImageUri)
             .format(DecodeFormat.PREFER_RGB_565)
             .override(imageOption.width, imageOption.height)
