@@ -24,7 +24,7 @@ class GlideRvActvity : AppCompatActivity() {
 
         requestPermission()
 
-        for (index in 1 until 7) {
+        for (index in 1 until 50) {
             val localImageUri = PathConstant.CAMERAPATH + File.separator + index + ".jpg"
             myDataset.add(localImageUri)
         }
