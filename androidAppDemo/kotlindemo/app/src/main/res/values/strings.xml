@@ -62,4 +62,5 @@
         Thread run()方法内部已经有Looper.prepare()和Looper.loop()，我们不用复写
     </string>
     <string name="compress_image">压缩照片</string>
+    <string name="model_clicked_pattern">You clicked on the rank %1$d word: %2$s!</string>
 </resources>

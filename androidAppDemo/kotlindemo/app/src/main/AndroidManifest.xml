@@ -30,6 +30,9 @@
         <activity android:name="com.aotuman.studydemo.glide.GlideMainActivity">
         </activity>
         <activity android:name="com.aotuman.studydemo.glide.recyclerview.GlideRvActvity">
+        </activity>
+        <activity android:name="com.aotuman.studydemo.searchablerecyclerview.ui.MainActivity"
+            android:theme="@style/NoTitleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
