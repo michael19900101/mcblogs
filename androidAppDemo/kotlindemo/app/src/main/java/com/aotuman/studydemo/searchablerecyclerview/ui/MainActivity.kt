@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
@@ -16,6 +15,7 @@ import com.aotuman.studydemo.R
 import com.aotuman.studydemo.searchablerecyclerview.adapter.ExampleAdapter
 import com.aotuman.studydemo.searchablerecyclerview.models.WordModel
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_search_rv.*
 import java.util.*
 
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(),
             ExampleAdapter.Listener { model: WordModel ->
                 val message =
                     getString(R.string.model_clicked_pattern, model.rank, model.word)
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                Snackbar.make(recycler_view, message, Snackbar.LENGTH_SHORT).show()
             }
         )
         mAdapter!!.addCallback(this)

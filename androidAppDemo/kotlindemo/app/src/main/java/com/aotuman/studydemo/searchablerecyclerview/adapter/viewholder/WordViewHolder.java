@@ -1,28 +1,24 @@
 package com.aotuman.studydemo.searchablerecyclerview.adapter.viewholder;
 
-import android.view.View;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 
-import com.aotuman.studydemo.R;
+import com.aotuman.studydemo.databinding.SearchRvItemWordBinding;
+import com.aotuman.studydemo.searchablerecyclerview.adapter.ExampleAdapter;
 import com.aotuman.studydemo.searchablerecyclerview.models.WordModel;
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
 
 public class WordViewHolder extends SortedListAdapter.ViewHolder<WordModel> {
 
-    private TextView tvLeft;
-    private TextView tvRight;
+    private SearchRvItemWordBinding wordBinding;
 
-    public WordViewHolder(View itemView) {
-        super(itemView);
-        tvLeft = itemView.findViewById(R.id.tv_left);
-        tvRight = itemView.findViewById(R.id.tv_right);
+    public WordViewHolder(SearchRvItemWordBinding binding, ExampleAdapter.Listener listener) {
+        super(binding.getRoot());
+        this.wordBinding = binding;
+        binding.setListener(listener);
     }
 
     @Override
     protected void performBind(@NonNull WordModel item) {
-        tvLeft.setText(String.valueOf(item.getRank()));
-        tvRight.setText(item.getWord());
+        wordBinding.setModel(item);
     }
 }
