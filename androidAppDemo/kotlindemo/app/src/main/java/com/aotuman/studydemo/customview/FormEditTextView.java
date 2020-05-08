@@ -38,7 +38,7 @@ public class FormEditTextView extends FormBaseViewGroup{
     }
 
     @Override
-    protected int setDisplayMode() {
+    protected int setMode() {
         return FormBaseViewGroup.PLAIN;
     }
 

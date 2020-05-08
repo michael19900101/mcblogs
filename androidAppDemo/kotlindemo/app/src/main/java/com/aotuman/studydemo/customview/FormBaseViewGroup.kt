@@ -12,6 +12,9 @@ import com.aotuman.studydemo.utils.Utils
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
 
+/**
+ * 基类布局(包含标题，错误提示，底部分割线)
+ */
 abstract class FormBaseViewGroup : ViewGroup {
     var contentView: View? = null
     lateinit var errorLineView: View
@@ -32,8 +35,8 @@ abstract class FormBaseViewGroup : ViewGroup {
     // 现在paddingtop 和 errortextheight 高度一样，内容以及达到竖直方向居中效果，paddingBottom暂时不用设置
     private val viewGroupPaddingBottom = 0
     private var orientation = 0
-    private var displayMode = 0
-    private val titleFlex = 0.33f
+    private var mode = 0
+    private var titleFlex = 0.33f
 
     companion object {
         const val HORIZONTAL = 0
@@ -65,7 +68,7 @@ abstract class FormBaseViewGroup : ViewGroup {
         BASIC
     )
     @Retention(RetentionPolicy.SOURCE)
-    annotation class DisplayMode {}
+    annotation class Mode {}
 
     constructor(context: Context) : super(context) {
         initView(context)
@@ -116,17 +119,17 @@ abstract class FormBaseViewGroup : ViewGroup {
         )
         addView(titleView)
 
-        displayMode = setDisplayMode()
+        mode = setMode()
         orientation = setOrientation()
         contentView = initContentView(context)
         // 给contentView设置边距
         contentView?.setPadding(Utils.dp2px(10f), 0, 0, 0)
         contentView?.let {  addView(contentView) }
-        setAttribute(displayMode)
+        setAttribute(mode)
     }
 
-    @DisplayMode
-    protected abstract fun setDisplayMode(): Int
+    @Mode
+    protected abstract fun setMode(): Int
 
     @OrientationMode
     protected abstract fun setOrientation(): Int
@@ -137,10 +140,10 @@ abstract class FormBaseViewGroup : ViewGroup {
         }
     }
 
-    fun setDisplayMode(@DisplayMode displayMode: Int) {
-        if (this.displayMode != displayMode) {
-            this.displayMode = displayMode
-            setAttribute(displayMode)
+    fun setMode(@Mode mode: Int) {
+        if (this.mode != mode) {
+            this.mode = mode
+            setAttribute(mode)
             requestLayout()
         }
     }
@@ -331,13 +334,24 @@ abstract class FormBaseViewGroup : ViewGroup {
         }
     }
 
-    private fun setAttribute(@DisplayMode dispalyMode: Int) {
-        when (dispalyMode) {
+    private fun setAttribute(@Mode mode: Int) {
+        when (mode) {
             FREE -> {
                 viewGroupPaddingLeft = 0
                 viewGroupPaddingRight = Utils.dp2px(12f)
                 setBackgroundColor(Color.parseColor(FREE_MODE_BG_COLOR))
                 contentView?.setBackgroundResource(R.drawable.uimode_bg)
+                bottomLineView.visibility = View.GONE
+            }
+            BASIC -> {
+                viewGroupPaddingLeft = 0
+                viewGroupPaddingRight = 0
+                titleFlex = 0f
+                orientation = HORIZONTAL
+                setBackgroundColor(Color.WHITE)
+                titleView.visibility = View.GONE
+                errorLineView.visibility = View.GONE
+                errorTextView.visibility = View.GONE
                 bottomLineView.visibility = View.GONE
             }
             else -> {
