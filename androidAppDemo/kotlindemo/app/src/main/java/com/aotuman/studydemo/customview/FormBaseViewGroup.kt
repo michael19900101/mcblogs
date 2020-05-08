@@ -3,6 +3,7 @@ package com.aotuman.studydemo.customview
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -106,6 +107,7 @@ abstract class FormBaseViewGroup : ViewGroup {
         errorTextView = TextView(context)
         errorTextView.textSize = ERROR_TEXT_SIZE.toFloat()
         errorTextView.setTextColor(Color.RED)
+        errorTextView.gravity = Gravity.RIGHT
         addView(errorTextView)
 
         bottomLineView = View(context)
@@ -238,6 +240,11 @@ abstract class FormBaseViewGroup : ViewGroup {
         }
         errorTextViewWidth = if (errorTextView.visibility == View.VISIBLE)  errorTextView.measuredWidth else 0
 
+        // GRID模式错误提示文字高度不能固定，其他模式都是固定错误文字高度
+        if (mode == GRID) {
+            errorTextViewHeight = if (errorTextView.visibility == View.VISIBLE)  errorTextView.measuredHeight else 0
+        }
+
         // 3.viewgroup计算子view的总高度
         val totalHeight = if (orientation == HORIZONTAL) {
             val maxHeight = titleViewHeight.coerceAtLeast(contentViewHeight)
@@ -352,6 +359,16 @@ abstract class FormBaseViewGroup : ViewGroup {
                 titleView.visibility = View.GONE
                 errorLineView.visibility = View.GONE
                 errorTextView.visibility = View.GONE
+                bottomLineView.visibility = View.GONE
+            }
+            GRID -> {
+                viewGroupPaddingLeft = 0
+                viewGroupPaddingRight = 0
+                titleFlex = 0f
+                orientation = HORIZONTAL
+                setBackgroundColor(Color.WHITE)
+                titleView.visibility = View.GONE
+                errorLineView.visibility = View.GONE
                 bottomLineView.visibility = View.GONE
             }
             else -> {

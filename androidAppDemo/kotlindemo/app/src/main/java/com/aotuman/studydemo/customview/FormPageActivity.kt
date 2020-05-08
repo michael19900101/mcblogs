@@ -100,5 +100,16 @@ class FormPageActivity : AppCompatActivity() {
         editTextView9.setOrientation(FormBaseViewGroup.HORIZONTAL)
         editTextView9.setMode(FormBaseViewGroup.BASIC)
         dynamicView9.addChildView(editTextView9)
+
+        val editTextView10 = FormEditTextView(this)
+        editTextView10.errorLineView?.visibility = View.GONE
+        editTextView10.errorTextView?.visibility = View.VISIBLE
+        editTextView10.errorTextView?.text = "grid模式水平方向显示显示超长错误验证错误是否有换行！！！"
+        editTextView10.titleView?.visibility = View.VISIBLE
+        editTextView10.titleView?.setRequire(false)
+        editTextView10.titleView?.setTitle("grid模式水平方向显示错误")
+        editTextView10.setOrientation(FormBaseViewGroup.HORIZONTAL)
+        editTextView10.setMode(FormBaseViewGroup.GRID)
+        dynamicView10.addChildView(editTextView10)
     }
 }
