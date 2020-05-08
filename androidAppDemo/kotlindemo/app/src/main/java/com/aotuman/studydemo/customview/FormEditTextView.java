@@ -38,8 +38,13 @@ public class FormEditTextView extends FormBaseViewGroup{
     }
 
     @Override
+    protected int setDisplayMode() {
+        return FormBaseViewGroup.PLAIN;
+    }
+
+    @Override
     protected int setOrientation() {
-        return FormBaseViewGroup.VERTICAL;
+        return FormBaseViewGroup.HORIZONTAL;
     }
 
     @Override

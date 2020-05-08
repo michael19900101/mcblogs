@@ -49,6 +49,10 @@ public class FormBaseLabelView extends LinearLayout{
         }
     }
 
+    public void setMaxLine(int maxLine) {
+        tv_title.setMaxLines(maxLine);
+    }
+
     public void setTvTitleVisibility(int visibility){
         tv_title.setVisibility(visibility);
     }
