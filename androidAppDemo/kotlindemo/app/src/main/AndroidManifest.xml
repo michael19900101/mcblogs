@@ -37,6 +37,9 @@
         </activity>
         <activity android:name=".customview.FormPageActivity"
             android:theme="@style/NoTitleTheme">
+
+        </activity>
+        <activity android:name=".dsl.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
