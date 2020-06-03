@@ -64,4 +64,7 @@
     <string name="compress_image">压缩照片</string>
     <string name="model_clicked_pattern">You clicked on the rank %1$d word: %2$s!</string>
     <string name="test_longtext">实验室小鼠是专门为测试目的而饲养的，它们往往是第一批感受到药物效果的动物,从阿尔茨海默病到背痛等所有治疗疾病的药物，以及所有的治疗方法。 考虑到这一点，研究人员想尽可能多地了解小鼠的大脑是有道理的，一个为期三年的项目刚刚完成了有史以来最完整的小鼠大脑“图谱”。</string>
+
+    <string name="authority">com.aotuman.studydemo.threadsample</string>
+    <string name="activity_title">Picasa Images</string>
 </resources>
