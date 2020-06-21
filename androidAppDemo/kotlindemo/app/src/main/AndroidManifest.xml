@@ -5,68 +5,64 @@
 
     <dist:module dist:instant="true" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.aotuman.studydemo.MainActivity"></activity>
-        <activity android:name="com.aotuman.studydemo.leak.FirstActivity"></activity>
-        <activity android:name="com.aotuman.studydemo.leak.SecondActivity"></activity>
-        <activity android:name="com.aotuman.studydemo.leak.AActivity"></activity>
-        <activity android:name="com.aotuman.studydemo.leak.BActivity"></activity>
-        <activity android:name="com.aotuman.studydemo.recyclerview.RvDemoActivity"></activity>
-        <activity android:name="com.aotuman.studydemo.handler.HandlerDemoActivity">
-
-        </activity>
-        <activity android:name="com.aotuman.studydemo.glide.GlideMainActivity">
-        </activity>
-        <activity android:name="com.aotuman.studydemo.glide.recyclerview.GlideRvActvity">
-        </activity>
-        <activity android:name="com.aotuman.studydemo.searchablerecyclerview.ui.MainActivity"
-            android:theme="@style/NoTitleTheme">
-
-        </activity>
-        <activity android:name=".customview.FormPageActivity"
-            android:theme="@style/NoTitleTheme">
-
-        </activity>
-        <activity android:name=".dsl.MainActivity">
-        </activity>
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".leak.FirstActivity" />
+        <activity android:name=".leak.SecondActivity" />
+        <activity android:name=".leak.AActivity" />
+        <activity android:name=".leak.BActivity" />
+        <activity android:name=".recyclerview.RvDemoActivity" />
+        <activity android:name=".handler.HandlerDemoActivity"></activity>
+        <activity android:name=".glide.GlideMainActivity"></activity>
+        <activity android:name=".glide.recyclerview.GlideRvActvity"></activity>
+        <activity
+            android:name=".searchablerecyclerview.ui.MainActivity"
+            android:theme="@style/NoTitleTheme"></activity>
+        <activity
+            android:name=".customview.FormPageActivity"
+            android:theme="@style/NoTitleTheme"></activity>
+        <activity android:name=".dsl.MainActivity"></activity>
         <activity
             android:name=".threadsample.DisplayActivity"
-            android:label="@string/activity_title" >
+            android:label="@string/activity_title">
+        </activity>
+        <activity
+            android:name=".lifecycles.LCMainActivity"
+            android:label="@string/title_activity_life_cycles_main"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!--
             No intent filters are specified, so android:exported defaults to "false". The
             service is only available to this app.
         -->
         <service
             android:name=".threadsample.RSSPullService"
-            android:exported="false"/>
-
+            android:exported="false" />
         <!--
             The attribute "android:exported" must be set to "false" to restrict this content
             provider to its own app. Otherwise, all apps could access it.
-         -->
+        -->
         <provider
             android:name=".threadsample.DataProvider"
-            android:exported="false"
-            android:authorities="@string/authority"/>
+            android:authorities="@string/authority"
+            android:exported="false" />
     </application>
 
 </manifest>
