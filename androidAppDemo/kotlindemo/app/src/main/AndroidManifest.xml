@@ -24,7 +24,9 @@
         <activity android:name=".leak.AActivity" />
         <activity android:name=".leak.BActivity" />
         <activity android:name=".recyclerview.RvDemoActivity" />
-        <activity android:name=".handler.HandlerDemoActivity"></activity>
+        <activity android:name=".handler.HandlerDemoActivity">
+
+        </activity>
         <activity android:name=".glide.GlideMainActivity"></activity>
         <activity android:name=".glide.recyclerview.GlideRvActvity"></activity>
         <activity
@@ -42,6 +44,17 @@
             android:name=".lifecycles.LCMainActivity"
             android:label="@string/title_activity_life_cycles_main"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".coroutine.CoroutineMainActivity">
+
+        </activity>
+        <activity android:name=".coroutine.CoroutineActivityOne">
+
+
+        </activity>
+
+        <activity android:name=".stickheader.demo.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

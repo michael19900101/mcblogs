@@ -4,45 +4,24 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.aotuman.studydemo.R
+import kotlinx.android.synthetic.main.activity_coroutine_one.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
-import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 
-@ObsoleteCoroutinesApi
-val BG = newSingleThreadContext("Background")
-
-class CoroutineMainActivity : AppCompatActivity(), CoroutineScope {
+class CoroutineActivityOne : AppCompatActivity(), CoroutineScope {
 
     lateinit var job: Job
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_coroutine_one)
         job = Job()
-
-        // 设置 start 参数为 LAZY，这样 Coroutine 不会自动安排执行，当点击 FAB 的时候，调用 job.start 后才会执行
-        job = launch(start = CoroutineStart.LAZY) {
-            Log.d("jbjb", "launch coroutine : ${Thread.currentThread().name}")
-            background()
-            tv_name_value.setText(Date().toLocaleString())
-        }
-
-        btn_skip.setOnClickListener {
-//            loadDataFromUI()
-            // 启动 job 这个 Coroutine 实例
-            job.start()
+        btn_work.setOnClickListener {
+            loadDataFromUI()
         }
     }
-
-    suspend fun background() {
-        withContext(BG) {
-            Thread.sleep(3000)
-            Log.d("jbjb", "background() called ${Thread.currentThread().name}")
-        }
-    }
-
 
 
     override val coroutineContext: CoroutineContext
@@ -72,7 +51,7 @@ class CoroutineMainActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun draw(data: String) {
-        tv_name_value.setText(data)
+        tv_result.text = data
     }
 
 }
