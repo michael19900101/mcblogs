@@ -55,6 +55,8 @@
         </activity>
 
         <activity android:name=".stickheader.demo.MainActivity">
+        </activity>
+        <activity android:name=".richtextview.RichTextActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
