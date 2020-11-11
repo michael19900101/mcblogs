@@ -3,6 +3,7 @@ package com.aotuman.studydemo.statelayout;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aotuman.statelayout.StateLayout;
+import com.aotuman.statelayout.anim.ViewAnimProvider;
 import com.aotuman.studydemo.R;
 
 
@@ -63,7 +65,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
 
 
         stateLayout.setUseAnimation(true);
-//        stateLayout.setViewSwitchAnimProvider(new FadeScaleViewAnimProvider());
+        stateLayout.setViewSwitchAnimProvider(new CustomViewAnimProvider());
         stateLayout.setRefreshListener(new StateLayout.OnViewRefreshListener() {
             @Override
             public void refreshClick() {
