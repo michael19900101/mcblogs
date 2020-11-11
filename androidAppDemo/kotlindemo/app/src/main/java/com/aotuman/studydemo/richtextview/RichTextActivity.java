@@ -10,12 +10,19 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.URLSpan;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.aotuman.studydemo.R;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class RichTextActivity extends AppCompatActivity {
     private TextView mIconSpan;
@@ -41,6 +48,7 @@ public class RichTextActivity extends AppCompatActivity {
         setUrlSpan(mUrlSpan.getText());
         setForegroundColorSpan(mForegroundColorSpan.getText());
         setBackgroundColorSpan(mBackgroundColorSpan.getText());
+        testRxJava();
     }
 
     private void setIconSpan(CharSequence charSequence) {
@@ -107,5 +115,34 @@ public class RichTextActivity extends AppCompatActivity {
         BackgroundColorSpan colorSpan = new BackgroundColorSpan(ContextCompat.getColor(this, R.color.colorAccent));
         spannableString.setSpan(colorSpan, 5, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         mBackgroundColorSpan.setText(spannableString);
+    }
+
+    private void testRxJava() {
+        Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("1");
+                emitter.onNext("2");
+                emitter.onNext("3");
+                emitter.onComplete();
+            }
+        }).subscribe(new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d("jbjb", "onSubscribe: 告诉观察者已经成功订阅了被观察者");
+            }
+            @Override
+            public void onNext(String s) {
+                Log.d("jbjb", "onNext : " + s);
+            }
+            @Override
+            public void onError(Throwable e) {
+                Log.d("jbjb", "onError : " + e.toString());
+            }
+            @Override
+            public void onComplete() {
+                Log.d("jbjb", "onComplete");
+            }
+        });
     }
 }
