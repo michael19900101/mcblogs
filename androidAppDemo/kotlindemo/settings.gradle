@@ -1,2 +1,3 @@
+include ':statelayout'
 include ':app'
 rootProject.name='kotlindemo'
