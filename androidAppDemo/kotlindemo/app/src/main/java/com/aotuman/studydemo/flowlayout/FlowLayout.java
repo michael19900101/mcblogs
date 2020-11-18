@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.LayoutDirection;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -33,10 +34,17 @@ public class FlowLayout extends ViewGroup {
     private int mGravity;
     private List<View> lineViews = new ArrayList<>();
 
+    private int maxLine = -1;
+    private boolean isReachMaxLine;
+    private View showMoreView;
+
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TagFlowLayout);
         mGravity = ta.getInt(R.styleable.TagFlowLayout_tag_gravity, LEFT);
+        maxLine = ta.getInt(R.styleable.TagFlowLayout_max_line, -1);
+        int showMoreViewId = ta.getResourceId(R.styleable.TagFlowLayout_show_more_view, R.layout.item_layout_objpicker_showmore);
+        showMoreView = LayoutInflater.from(context).inflate(showMoreViewId,null);
         int layoutDirection = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault());
         if (layoutDirection == LayoutDirection.RTL) {
             if (mGravity == LEFT) {
@@ -247,5 +255,9 @@ public class FlowLayout extends ViewGroup {
     @Override
     protected LayoutParams generateLayoutParams(LayoutParams p) {
         return new MarginLayoutParams(p);
+    }
+
+    public boolean isReachMaxLine() {
+        return isReachMaxLine;
     }
 }
