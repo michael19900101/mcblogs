@@ -20,7 +20,9 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * https://blog.csdn.net/lmj623565791/article/details/38352503
+ * 流式布局，可以自定义最大显示行数，并且在最后一行的最后一个位置放置showMoreView
+ * 下标为0的是showMoreView
+ * 下标为1开始的是动态添加的View
  */
 public class FlowLayout extends ViewGroup {
 
@@ -40,7 +42,7 @@ public class FlowLayout extends ViewGroup {
 
     private int showMoreViewWidth;
     private int showMoreViewHeight;
-    int maxDrawChildIndex;
+    int maxDrawChildIndex; // 最后一个绘制的View的下标
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -77,7 +79,7 @@ public class FlowLayout extends ViewGroup {
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
-        showMoreView.measure(MeasureSpec.UNSPECIFIED,MeasureSpec.UNSPECIFIED);
+        showMoreView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 
         showMoreViewWidth = showMoreView.getMeasuredWidth();
 
@@ -97,12 +99,12 @@ public class FlowLayout extends ViewGroup {
 
         int currentLine = 1;
 
-        maxDrawChildIndex = getChildCount();
+        int cCount = getChildCount();
         // 遍历每个子元素 (i = 0: showMoreView )
-        for (int i = 1; i < maxDrawChildIndex; i++) {
+        for (int i = 1; i < cCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() == View.GONE) {
-                if (i == maxDrawChildIndex - 1) {
+                if (i == cCount - 1) {
                     width = Math.max(lineWidth, width);
                     height += lineHeight;
                 }
@@ -122,7 +124,7 @@ public class FlowLayout extends ViewGroup {
             int childHeight = child.getMeasuredHeight() + lp.topMargin
                     + lp.bottomMargin;
 
-            if (currentLine < maxLine) {
+            if (currentLine <= maxLine) {
                 /**
                  * 如果加入当前child，则超出最大宽度，则的到目前最大宽度给width，类加height 然后开启新行
                  */
@@ -145,6 +147,15 @@ public class FlowLayout extends ViewGroup {
                             if (!flag) {
                                 width = Math.max(currentLastRowWidth, width);
                                 height += currentLastRowHeight;
+
+                                // 去掉多余的子view
+                                if (getChildCount() > maxDrawChildIndex) {
+                                    try {
+                                        removeViews(maxDrawChildIndex+1, getChildCount()-maxDrawChildIndex-1);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
 
                                 setMeasuredDimension(
                                         modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width + getPaddingLeft() + getPaddingRight(),
@@ -172,9 +183,10 @@ public class FlowLayout extends ViewGroup {
                     lineHeight = Math.max(lineHeight, childHeight);
                 }
                 // 如果是最后一个，则将当前记录的最大宽度和当前lineWidth做比较
-                if (i == maxDrawChildIndex - 1) {
+                if (i == cCount - 1) {
                     width = Math.max(lineWidth, width);
                     height += lineHeight;
+                    maxDrawChildIndex = i;
                 }
             }
         }
@@ -236,8 +248,11 @@ public class FlowLayout extends ViewGroup {
         int lineWidth = 0;
         int lineHeight = 0;
 
+        // 只有showMoreView
+        if (getChildCount() == 1) return;
+
         // (i = 0: showMoreView )
-        for (int i = 1; i < maxDrawChildIndex; i++) {
+        for (int i = 1; i <= maxDrawChildIndex; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() == View.GONE) continue;
             MarginLayoutParams lp = (MarginLayoutParams) child
