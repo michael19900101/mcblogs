@@ -40,7 +40,7 @@ public class FlowLayout extends ViewGroup {
 
     private int showMoreViewWidth;
     private int showMoreViewHeight;
-    private int maxDrawChildIndex;
+    int maxDrawChildIndex;
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -145,7 +145,11 @@ public class FlowLayout extends ViewGroup {
                             if (!flag) {
                                 width = Math.max(currentLastRowWidth, width);
                                 height += currentLastRowHeight;
-                                break;
+
+                                setMeasuredDimension(
+                                        modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width + getPaddingLeft() + getPaddingRight(),
+                                        modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height + getPaddingTop() + getPaddingBottom());
+                                return;
                             }
 
                             int childViewWidth = childView.getMeasuredWidth() +

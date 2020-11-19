@@ -2,12 +2,14 @@ package com.aotuman.studydemo.flowlayout
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aotuman.studydemo.R
 import kotlinx.android.synthetic.main.layout_flow.*
+import java.lang.Exception
 
 class FlowMainActivity : AppCompatActivity() {
 
@@ -31,4 +33,26 @@ class FlowMainActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if (flow.childCount > flow.maxDrawChildIndex) {
+//            val delChildViews = mutableListOf<View>()
+//            for (index in flow.maxDrawChildIndex+1 until flow.childCount) {
+//                delChildViews.add(flow.getChildAt(index))
+//            }
+//            for (view in delChildViews) {
+//                flow.removeView(view)
+//            }
+
+
+//            try {
+//                flow.removeViews(flow.maxDrawChildIndex,flow.childCount - flow.maxDrawChildIndex)
+//            } catch (e:Exception) {
+//                e.printStackTrace()
+//            }
+        }
+
+    }
 }
