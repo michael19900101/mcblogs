@@ -9,48 +9,9 @@
 
     <com.aotuman.studydemo.flowlayout.FlowLayout
         android:id="@+id/flow"
-        app:max_line="4"
-        app:show_more_view="@layout/item_layout_objpicker_showmore"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-       <!-- <include
-            layout="@layout/item_layout_text_objpicker"/>
-
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text="Welcome" />
-
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="IT工程师" />
-
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="学习ing" />
-
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="恋爱ing" />
-
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="挣钱ing" />
-
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="努力ing" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I thick i can" />-->
-    </com.aotuman.studydemo.flowlayout.FlowLayout>
+        android:layout_height="wrap_content"
+        app:max_line="4"
+        app:show_more_view="@layout/item_layout_objpicker_showmore"/>
 
 </LinearLayout>
