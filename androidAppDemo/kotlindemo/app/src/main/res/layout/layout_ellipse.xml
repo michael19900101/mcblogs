@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Full Text" />
+
+    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+        android:visibility="gone"
+        android:id="@+id/textViewFull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="all" />
+
+    <TextView
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ellipsize None" />
+
+    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+        android:visibility="gone"
+        android:id="@+id/textViewNone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="all"
+        android:ellipsize="none"
+        android:maxLines="3" />
+
+    <TextView
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ellipsize Start" />
+
+    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+        android:visibility="gone"
+        android:id="@+id/textViewStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="all"
+        android:ellipsize="start"
+        android:maxLines="3" />
+
+    <TextView
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ellipsize Middle" />
+
+    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+        android:visibility="gone"
+        android:id="@+id/textViewMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="all"
+        android:ellipsize="middle"
+        android:maxLines="3" />
+
+    <TextView
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ellipsize End" />
+
+    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+        android:id="@+id/textViewEnd"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3" />
+
+    <TextView
+        android:id="@+id/tv_test"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

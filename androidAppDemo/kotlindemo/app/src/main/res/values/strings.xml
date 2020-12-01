@@ -82,4 +82,6 @@
 
     <string name="toast_refresh">刷新</string>
     <string name="toast_sign_in">登录</string>
+
+    <string name="ellipsis">\u2026</string>
 </resources>
