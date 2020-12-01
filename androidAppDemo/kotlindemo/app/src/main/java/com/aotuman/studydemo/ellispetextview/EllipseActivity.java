@@ -8,6 +8,7 @@ import android.text.StaticLayout;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -38,10 +39,11 @@ public class EllipseActivity extends AppCompatActivity {
         tvEnd.setText(TEXT);
 
 
-        TextView tv = ((TextView) findViewById(R.id.tv_test));
+        TextView tv = findViewById(R.id.tv_test);
         tv.post(new Runnable() {
             @Override
             public void run() {
+                if (tv.getVisibility() == View.GONE) return;
                 StaticLayout layout = Utils.createStaticLayout(TEXT, tv);
                 String endText = "共103项";
                 String realText = Utils.getRealText(layout,tv,TEXT,endText,3);
