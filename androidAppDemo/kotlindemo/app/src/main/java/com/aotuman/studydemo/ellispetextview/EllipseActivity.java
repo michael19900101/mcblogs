@@ -2,6 +2,7 @@ package com.aotuman.studydemo.ellispetextview;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.StaticLayout;
@@ -27,16 +28,28 @@ public class EllipseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_ellipse);
-        tvFull = (EllipsizingTextView) findViewById(R.id.textViewFull);
-        tvNone = (EllipsizingTextView) findViewById(R.id.textViewNone);
-        tvStart = (EllipsizingTextView) findViewById(R.id.textViewStart);
-        tvMiddle = (EllipsizingTextView) findViewById(R.id.textViewMiddle);
-        tvEnd = (EllipsizingTextView) findViewById(R.id.textViewEnd);
+        tvFull = (EllipsingTextView) findViewById(R.id.textViewFull);
+        tvNone = (EllipsingTextView) findViewById(R.id.textViewNone);
+        tvStart = (EllipsingTextView) findViewById(R.id.textViewStart);
+        tvMiddle = (EllipsingTextView) findViewById(R.id.textViewMiddle);
+        tvEnd = (EllipsingTextView) findViewById(R.id.textViewEnd);
         tvFull.setText(TEXT);
         tvNone.setText(TEXT);
         tvStart.setText(TEXT);
         tvMiddle.setText(TEXT);
         tvEnd.setText(TEXT);
+        ((EllipsingTextView)tvEnd).addEllipsizeListener(new EllipsingTextView.EllipsizeListener() {
+            @Override
+            public void ellipsizeStateChanged(boolean ellipsized) {
+                Log.e("jbjb", String.valueOf(ellipsized));
+            }
+        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvEnd.setText("近日，四川甘孜20岁藏族小伙丁");
+            }
+        },5000);
 
 
         TextView tv = findViewById(R.id.tv_test);

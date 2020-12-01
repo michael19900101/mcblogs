@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Full Text" />
 
-    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+    <com.aotuman.studydemo.ellispetextview.EllipsingTextView
         android:visibility="gone"
         android:id="@+id/textViewFull"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Ellipsize None" />
 
-    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+    <com.aotuman.studydemo.ellispetextview.EllipsingTextView
         android:visibility="gone"
         android:id="@+id/textViewNone"
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Ellipsize Start" />
 
-    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+    <com.aotuman.studydemo.ellispetextview.EllipsingTextView
         android:visibility="gone"
         android:id="@+id/textViewStart"
         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Ellipsize Middle" />
 
-    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+    <com.aotuman.studydemo.ellispetextview.EllipsingTextView
         android:visibility="gone"
         android:id="@+id/textViewMiddle"
         android:layout_width="match_parent"
@@ -74,11 +74,12 @@
         android:layout_height="wrap_content"
         android:text="Ellipsize End" />
 
-    <com.aotuman.studydemo.ellispetextview.EllipsizingTextView
+    <com.aotuman.studydemo.ellispetextview.EllipsingTextView
         android:id="@+id/textViewEnd"
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:ellipsize="end"
         android:maxLines="3" />
 
