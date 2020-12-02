@@ -1,15 +1,15 @@
 package com.aotuman.studydemo.ellispetextview
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Build
-import android.text.Layout
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.StaticLayout
+import android.text.*
 import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import com.aotuman.studydemo.R
 import java.util.*
@@ -26,6 +26,9 @@ class EllipsingTextView : AppCompatTextView {
     private var fullText: String? = null
     private var lineSpacingMultiPier = 1.0f
     private var lineAdditionalVerticalPadding = 0.0f
+    private var showMoreListener: ShowMoreListener? = null
+    private var showMore = false
+    private var originMaxLines = 4
 
     constructor(context: Context) : super(context) {
         ELLIPSIS = context.getString(R.string.ellipsis)
@@ -33,6 +36,7 @@ class EllipsingTextView : AppCompatTextView {
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         ELLIPSIS = context.getString(R.string.ellipsis)
+        initAttrs(attrs)
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
@@ -41,6 +45,14 @@ class EllipsingTextView : AppCompatTextView {
         defStyle
     ) {
         ELLIPSIS = context.getString(R.string.ellipsis)
+        initAttrs(attrs)
+    }
+
+    private fun initAttrs(attrs: AttributeSet?) {
+        val typedArray: TypedArray =
+            context.obtainStyledAttributes(attrs, R.styleable.EllipsingTextView)
+        originMaxLines = typedArray.getInt(R.styleable.EllipsingTextView_max_line, 4)
+        typedArray.recycle()
     }
 
     fun addEllipsizeListener(listener: EllipsizeListener?) {
@@ -52,6 +64,10 @@ class EllipsingTextView : AppCompatTextView {
 
     fun removeEllipsizeListener(listener: EllipsizeListener?) {
         ellipsizeListeners.remove(listener)
+    }
+
+    fun setShowMoreListener(showMoreListener: ShowMoreListener){
+        this.showMoreListener = showMoreListener
     }
 
     override fun setLineSpacing(add: Float, mult: Float) {
@@ -80,7 +96,7 @@ class EllipsingTextView : AppCompatTextView {
         var sss = SpannableString(fullText)
         var workingText = fullText
         var ellipsized = false
-        if (maxLines != -1) {
+        if (maxLines != -1 && !showMore) {
             val layout = createWorkingLayout(workingText)
             val originalLineCount = layout.lineCount
             if (originalLineCount > maxLines) {
@@ -97,7 +113,7 @@ class EllipsingTextView : AppCompatTextView {
                 workingText = workingText + ELLIPSIS + blankText + endText
                 sss = SpannableString(workingText)
                 sss.setSpan(
-                    MyClickText(context), workingText.length - endText.length,
+                    MyClickText(), workingText.length - endText.length,
                     workingText.length,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
@@ -106,15 +122,26 @@ class EllipsingTextView : AppCompatTextView {
                 ellipsized = true
             }
         }
-        if (workingText != text) {
+        if (showMore) {
             programmaticChange = true
             text = try {
-                sss
+                workingText
             } finally {
                 programmaticChange = false
             }
+        } else {
+            if (workingText != text) {
+                programmaticChange = true
+                text = try {
+                    sss
+                } finally {
+                    programmaticChange = false
+                }
+            }
         }
+
         isStale = false
+        showMore = false
         if (ellipsized != isEllipsized) {
             isEllipsized = ellipsized
             for (listener in ellipsizeListeners) {
@@ -148,7 +175,41 @@ class EllipsingTextView : AppCompatTextView {
         fun ellipsizeStateChanged(ellipsized: Boolean)
     }
 
+    interface ShowMoreListener {
+        fun onClick()
+    }
+
     companion object {
         private lateinit var ELLIPSIS: String
     }
+
+    inner class MyClickText: ClickableSpan() {
+
+        override fun updateDrawState(ds: TextPaint) {
+            //设置文本的颜色
+            ds.color = Color.BLUE
+            //超链接形式的下划线，false 表示不显示下划线，true表示显示下划线
+            ds.isUnderlineText = false
+        }
+
+        override fun onClick(widget: View) {
+            showMoreListener?.onClick()
+        }
+    }
+
+    fun showFullText(fullText: String) {
+        this.fullText = fullText
+        isStale = true
+        showMore = true
+        maxLines = Int.MAX_VALUE
+        invalidate()
+    }
+
+    override fun setText(text: CharSequence?, type: BufferType?) {
+        if (!showMore) {
+            maxLines = originMaxLines
+        }
+        super.setText(text, type)
+    }
+
 }

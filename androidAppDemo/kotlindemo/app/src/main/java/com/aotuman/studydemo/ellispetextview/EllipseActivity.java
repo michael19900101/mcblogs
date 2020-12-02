@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,10 +45,18 @@ public class EllipseActivity extends AppCompatActivity {
                 Log.e("jbjb", String.valueOf(ellipsized));
             }
         });
+        ((EllipsingTextView)tvEnd).setShowMoreListener(new EllipsingTextView.ShowMoreListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(EllipseActivity.this,"发生了点击效果",Toast.LENGTH_SHORT).show();
+                ((EllipsingTextView) tvEnd).showFullText(TEXT);
+            }
+        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                tvEnd.setText("近日，四川甘孜20岁藏族小伙丁");
+//                tvEnd.setText("近日，四川甘孜20岁藏族小伙丁");
+                tvEnd.setText("jbjb:"+TEXT);
             }
         },5000);
 
