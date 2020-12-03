@@ -63,7 +63,7 @@
         <activity android:name=".flowlayout.FlowMainActivity">
 
         </activity>
-        <activity android:name=".ellispetextview.EllipseActivity">
+        <activity android:name=".ellispetextview.EllipseActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

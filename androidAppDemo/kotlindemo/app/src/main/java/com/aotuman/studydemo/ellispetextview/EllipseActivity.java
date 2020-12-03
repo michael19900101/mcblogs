@@ -1,5 +1,6 @@
 package com.aotuman.studydemo.ellispetextview;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,62 +35,35 @@ public class EllipseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_ellipse);
-        tvFull = (EllipsingTextView) findViewById(R.id.textViewFull);
-        tvNone = (EllipsingTextView) findViewById(R.id.textViewNone);
-        tvStart = (EllipsingTextView) findViewById(R.id.textViewStart);
-        tvMiddle = (EllipsingTextView) findViewById(R.id.textViewMiddle);
-        tvEnd = (EllipsingTextView) findViewById(R.id.textViewEnd);
-        tvFull.setText(TEXT);
-        tvNone.setText(TEXT);
-        tvStart.setText(TEXT);
-        tvMiddle.setText(TEXT);
-        tvEnd.setText(TEXT);
-        ((EllipsingTextView)tvEnd).setShowMoreText("显示更多");
-        ((EllipsingTextView)tvEnd).addEllipsizeListener(new EllipsingTextView.EllipsizeListener() {
-            @Override
-            public void ellipsizeStateChanged(boolean ellipsized) {
-                Log.e("jbjb", String.valueOf(ellipsized));
-            }
-        });
-        ((EllipsingTextView)tvEnd).setShowMoreListener(new EllipsingTextView.ShowMoreListener() {
-            @Override
-            public void onClick() {
-                Toast.makeText(EllipseActivity.this,"发生了点击效果",Toast.LENGTH_SHORT).show();
-                ((EllipsingTextView) tvEnd).showFullText(TEXT);
-            }
-        });
+        ExpandableTextView expandableTextView = findViewById(R.id.expanded_text);
+        int viewWidth = getWindowManager().getDefaultDisplay().getWidth() - dp2px(this, 20f);
+//        expandableTextView.initWidth(viewWidth);
+        expandableTextView.setMaxLines(1);
+        expandableTextView.setHasAnimation(true);
+        expandableTextView.setCloseInNewLine(false);
+        expandableTextView.setOpenSuffix("点开展示更多");
+        expandableTextView.setOpenSuffixColor(getResources().getColor(R.color.colorAccent));
+        expandableTextView.setCloseSuffixColor(getResources().getColor(R.color.colorAccent));
+        expandableTextView.setOriginalText("中华人民共和国中央人民政府仿小红书实现的文本展开/收起的功能");
+
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
-////                tvEnd.setText("近日，四川甘孜20岁藏族小伙丁");
-//                tvEnd.setText("jbjb:"+TEXT);
+//                expandableTextView.setOriginalText("jbjb:"+TEXT);
 //            }
 //        },5000);
+    }
 
-
-        TextView tv = findViewById(R.id.tv_test);
-        tv.post(new Runnable() {
-            @Override
-            public void run() {
-                if (tv.getVisibility() == View.GONE) return;
-                StaticLayout layout = Utils.createStaticLayout(TEXT, tv);
-                String endText = "共103项";
-                String realText = Utils.getRealText(layout,tv,TEXT,endText,3);
-                Log.e("jbjb",realText);
-//                tv.setText(realText);
-
-                SpannableString sss = new SpannableString(realText);
-                sss.setSpan(new ForegroundColorSpan(Color.BLUE), realText.length() - endText.length() ,
-                        realText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                sss.setSpan(new MyClickText(EllipseActivity.this),realText.length() - endText.length() ,
-                        realText.length(),
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                tv.setMovementMethod(LinkMovementMethod.getInstance());//不设置 没有点击事件
-                tv.setHighlightColor(Color.TRANSPARENT); //设置点击后的颜色为透明
-                tv.setText(sss);
-
-            }
-        });
-
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public static int dp2px(Context context, float dpValue) {
+        int res = 0;
+        final float scale = context.getResources().getDisplayMetrics().density;
+        if (dpValue < 0)
+            res = -(int) (-dpValue * scale + 0.5f);
+        else
+            res = (int) (dpValue * scale + 0.5f);
+        return res;
     }
 }
