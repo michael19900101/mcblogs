@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
 class EllipsingTextView : AppCompatTextView {
     private val ellipsizeListeners: MutableList<EllipsizeListener> = ArrayList()
     private val blankText = " "
-    private val endText = "共101项"
+    private var showMoreText = "共101项"
     var isEllipsized = false
         private set
     private var isStale = true
@@ -102,7 +102,7 @@ class EllipsingTextView : AppCompatTextView {
             if (originalLineCount > maxLines) {
                 workingText =
                     fullText!!.substring(0, layout.getLineEnd(maxLines - 1)).trim { it <= ' ' }
-                while (createWorkingLayout(workingText + ELLIPSIS + blankText + endText).lineCount > maxLines) {
+                while (createWorkingLayout(workingText + ELLIPSIS + blankText + showMoreText).lineCount > maxLines) {
                     val lastSpace = workingText!!.lastIndexOf(' ')
                     workingText = if (lastSpace == -1) {
                         workingText.substring(0, workingText.length - 1)
@@ -110,10 +110,10 @@ class EllipsingTextView : AppCompatTextView {
                         workingText.substring(0, lastSpace)
                     }
                 }
-                workingText = workingText + ELLIPSIS + blankText + endText
+                workingText = workingText + ELLIPSIS + blankText + showMoreText
                 sss = SpannableString(workingText)
                 sss.setSpan(
-                    MyClickText(), workingText.length - endText.length,
+                    ShowMoreClickText(), workingText.length - showMoreText.length,
                     workingText.length,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
@@ -183,7 +183,7 @@ class EllipsingTextView : AppCompatTextView {
         private lateinit var ELLIPSIS: String
     }
 
-    inner class MyClickText: ClickableSpan() {
+    inner class ShowMoreClickText: ClickableSpan() {
 
         override fun updateDrawState(ds: TextPaint) {
             //设置文本的颜色
@@ -210,6 +210,10 @@ class EllipsingTextView : AppCompatTextView {
             maxLines = originMaxLines
         }
         super.setText(text, type)
+    }
+
+    fun setShowMoreText(showMoreText: String) {
+        this.showMoreText = showMoreText
     }
 
 }
