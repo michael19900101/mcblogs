@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <com.aotuman.studydemo.twodimensionScroll.TwoDimensionScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="700dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <View
+                android:layout_width="700dp"
+                android:layout_height="250dp"
+                android:background="@color/colorAccent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_login"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_empty"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_time_out"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_no_network"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_login"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_empty"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_time_out"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_no_network"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_login"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_empty"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_time_out"/>
+
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_state_no_network"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="700dp"
+                android:layout_height="50dp"
+                android:background="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:layout_width="700dp"
+                android:layout_height="wrap_content"
+                android:text="基于上面提到BST存在的问题，一种新的树--平衡二叉树（Balanced BST）被提了出来。平衡二叉树在插入和删除的时候，会通过旋转操作将树的高度一直保持在logN。具有代表性的平衡二叉树有两种，分别为AVL树和红黑树，AVL树因为性能更差的缘故，在实际运用的情况下远不如红黑树。
+
+红黑树（Red-Black Tree，以下简称RBTree）的实际应用非常广泛，常见的函数库，如C++ STL中，很多部分(包括set, multiset, map, multimap)应用了红黑树的变体,以及Java中的TreeMap，TreeSet， Java8中的HashMap的实现也将链表替换成了红黑树。
+
+RBTree为了保持树严格的平衡性质，在原来BST的基础上添加了以下五点性质：
+
+根节点是黑色。
+树的任一节点是红色或黑色。
+每个红色节点的两个子节点都是黑色。
+从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。
+空节点默认是黑色的">
+
+            </TextView>
+
+            <View
+                android:layout_width="700dp"
+                android:layout_height="250dp"
+                android:background="@android:color/black" />
+
+            <View
+                android:layout_width="700dp"
+                android:layout_height="250dp"
+                android:background="@android:color/white" />
+
+            <View
+                android:layout_width="700dp"
+                android:layout_height="250dp"
+                android:background="@android:color/holo_blue_bright" />
+        </LinearLayout>
+
+
+    </com.aotuman.studydemo.twodimensionScroll.TwoDimensionScrollView>
+
+
+</LinearLayout>

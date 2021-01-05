@@ -64,6 +64,11 @@
 
         </activity>
         <activity android:name=".ellispetextview.EllipseActivity2">
+
+        </activity>
+        <activity android:name=".wheelview.test.MainActivity">
+        </activity>
+        <activity android:name=".twodimensionScroll.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
