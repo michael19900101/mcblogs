@@ -62,4 +62,8 @@ dependencies {
     implementation 'com.github.wrdlbrnft:sorted-list-adapter:0.3.0.27'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'org.aspectj:aspectjrt:1.8.9'
+
+    // yoga
+    implementation 'com.facebook.yoga.android:yoga-layout:1.16.0'
+    implementation 'com.facebook.soloader:soloader:0.9.0'
 }

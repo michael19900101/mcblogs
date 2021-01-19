@@ -69,12 +69,23 @@
         <activity android:name=".wheelview.test.MainActivity">
         </activity>
         <activity android:name=".twodimensionScroll.MainActivity">
+
+        </activity>
+
+        <activity android:name=".yoga.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".yoga.BenchmarkActivity"
+            android:exported="false"
+            />
+        <activity android:name=".yoga.TestActivity"/>
+
         <!--
             No intent filters are specified, so android:exported defaults to "false". The
             service is only available to this app.

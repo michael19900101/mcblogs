@@ -25,4 +25,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="NoTitleBarWhiteBG" parent="Theme.AppCompat.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:textDirection">locale</item>
+    </style>
+    <style name="MyActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/MyTitleText</item>
+        <item name="android:background">@drawable/action_bar_background</item>
+    </style>
+    <style name="MyTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/yoga_blue</item>
+    </style>
 </resources>
