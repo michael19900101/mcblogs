@@ -72,7 +72,7 @@
 
         </activity>
 
-        <activity android:name=".yoga.MainActivity">
+        <activity android:name=".yoga.DynamicViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
