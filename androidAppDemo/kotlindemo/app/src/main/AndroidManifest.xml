@@ -73,11 +73,6 @@
         </activity>
 
         <activity android:name=".yoga.DynamicViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -101,6 +96,16 @@
             android:name=".threadsample.DataProvider"
             android:authorities="@string/authority"
             android:exported="false" />
+
+        <activity android:name=".ipc.messenger.MessengerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.aotuman.studydemo.ipc.messenger.MessengerService" android:process=":remote"></service>
     </application>
 
 </manifest>
