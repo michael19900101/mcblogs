@@ -97,15 +97,22 @@
             android:authorities="@string/authority"
             android:exported="false" />
 
+        <!--ipc messenger -->
         <activity android:name=".ipc.messenger.MessengerActivity">
+
+        </activity>
+
+        <service android:name="com.aotuman.studydemo.ipc.messenger.MessengerService" android:process=":remote"></service>
+
+        <!--ipc aidl-->
+        <activity android:name=".ipc.aidl.AIDLActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name="com.aotuman.studydemo.ipc.messenger.MessengerService" android:process=":remote"></service>
+        <service android:name="com.aotuman.studydemo.ipc.aidl.AIDLService" android:process=":remote"></service>
     </application>
 
 </manifest>
