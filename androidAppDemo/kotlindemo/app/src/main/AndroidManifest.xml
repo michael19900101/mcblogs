@@ -73,11 +73,7 @@
         </activity>
 
         <activity android:name=".yoga.DynamicViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -114,6 +110,15 @@
 
         </activity>
         <service android:name="com.aotuman.studydemo.ipc.aidl.AIDLService" android:process=":remote"></service>
+
+        <!--mvvm demo-->
+        <activity android:name=".jetpack.mvvm.view.UserListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
