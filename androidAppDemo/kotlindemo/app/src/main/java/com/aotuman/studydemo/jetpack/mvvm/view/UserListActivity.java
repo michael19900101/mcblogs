@@ -21,7 +21,19 @@ import com.aotuman.studydemo.jetpack.mvvm.viewmodel.UserListViewModel;
 import java.util.List;
 
 /**
- * MVVM 的View层（含xml）
+ *              ViewModel
+ *             ↗          ↘ ↖
+ *           ↙              ↘ ↖
+ *         View              Model
+ *
+ * Model，模型层，即数据模型，用于获取和存储数据。
+ * View，视图，即Activity/Fragment
+ * ViewModel，视图模型，负责业务逻辑。
+ *
+ * MVVM 的本质是 数据驱动，把解耦做的更彻底，viewModel不持有view 。
+ *
+ * View 产生事件，使用 ViewModel进行逻辑处理后，通知Model更新数据，
+ * Model把更新的数据给ViewModel，ViewModel自动通知View更新界面，而不是主动调用View的方法。
  */
 public class UserListActivity extends AppCompatActivity {
 
