@@ -107,4 +107,7 @@
         >Who are you?</string>
 
     <string name="dagger2_a">最简单的使用@Inject</string>
+    <string name="dagger2_b">使用@Module</string>
+    <string name="dagger2_c">通过Module传参(1)</string>
+    <string name="dagger2_d">使用@Component.Builder(2)</string>
 </resources>

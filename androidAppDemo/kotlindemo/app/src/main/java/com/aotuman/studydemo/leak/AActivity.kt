@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import com.aotuman.studydemo.R
+import com.aotuman.studydemo.glide.GlideMainActivity
 import kotlinx.android.synthetic.main.activity_leak_first_layout.*
 
 class AActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class AActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leak_first_layout)
         button_jump.setOnClickListener {
-            val intent = Intent(this, BActivity::class.java)
+            val intent = Intent(this, GlideMainActivity::class.java)
             startActivity(intent)
         }
     }

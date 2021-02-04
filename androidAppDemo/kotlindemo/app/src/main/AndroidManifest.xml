@@ -113,6 +113,14 @@
 
         <!--mvvm demo-->
         <activity android:name=".jetpack.mvvm.view.UserListActivity">
+        </activity>
+
+        <!--dagger demo-->
+        <activity android:name=".dagger2stu.astudy.AstudyActivity">
+        </activity>
+        <activity android:name=".dagger2stu.bstudy.BstudyActivity">
+        </activity>
+        <activity android:name=".dagger2stu.cstudy.CstudyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
