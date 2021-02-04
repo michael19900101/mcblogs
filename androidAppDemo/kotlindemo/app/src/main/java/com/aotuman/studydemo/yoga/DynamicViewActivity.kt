@@ -4,6 +4,8 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.soloader.SoLoader
 import com.facebook.yoga.*
@@ -24,7 +26,8 @@ class DynamicViewActivity : AppCompatActivity() {
         yogaLayout.yogaNode.wrap = YogaWrap.WRAP
         yogaLayout.yogaNode.alignItems = YogaAlign.FLEX_START
 
-        addChildren(yogaLayout.yogaNode)
+//        addChildren(yogaLayout.yogaNode)
+        addChildren()
         yogaLayout.invalidate()
     }
 
@@ -48,6 +51,23 @@ class DynamicViewActivity : AppCompatActivity() {
 
             yogaLayout.addView(itemView, node)
             root.addChildAt(node, index)
+        }
+    }
+
+    private fun addChildren(){
+
+        for (index in 0..10){
+            val item = TextView(this)
+            val bgColor = if (index % 2 == 0 ) Color.BLUE else Color.GREEN
+            item.setBackgroundColor(bgColor)
+            item.text = if (index % 2 == 0 ) "adsda" else "dasdasdasdsdassdasdads"
+            val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            yogaLayout.addView(item, index, params)
+            val node = yogaLayout.getYogaNodeForView(item)
+
+            node.flex = 1F
+            node.setMinWidth(if (index % 2 == 0 ) DisplayUtil.dp2px(100F).toFloat() else DisplayUtil.dp2px(50F).toFloat())
+            node.setMargin(YogaEdge.VERTICAL, DisplayUtil.dp2px(10F).toFloat())
         }
     }
 }

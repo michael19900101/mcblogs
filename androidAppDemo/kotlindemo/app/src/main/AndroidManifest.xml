@@ -73,6 +73,11 @@
         </activity>
 
         <activity android:name=".yoga.DynamicViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -106,11 +111,7 @@
 
         <!--ipc aidl-->
         <activity android:name=".ipc.aidl.AIDLActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <service android:name="com.aotuman.studydemo.ipc.aidl.AIDLService" android:process=":remote"></service>
     </application>
