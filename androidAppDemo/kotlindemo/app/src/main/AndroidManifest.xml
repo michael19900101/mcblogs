@@ -117,6 +117,10 @@
 
         <!--mvp demo-->
         <activity android:name=".jetpack.mvp.MVPActivity">
+        </activity>
+
+        <!--databing demo-->
+        <activity android:name=".jetpack.databinding.DataBindingLearningActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
