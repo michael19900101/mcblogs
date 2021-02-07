@@ -115,17 +115,23 @@
         <activity android:name=".jetpack.mvvm.view.UserListActivity">
         </activity>
 
+        <!--mvvm dynamic view demo-->
+        <activity android:name=".jetpack.company.view.FormPageActivity">
+        </activity>
+        <activity android:name=".jetpack.company.FormFirstActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!--mvp demo-->
         <activity android:name=".jetpack.mvp.MVPActivity">
         </activity>
 
         <!--databing demo-->
         <activity android:name=".jetpack.databinding.DataBindingLearningActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--dagger demo-->

@@ -1,4 +1,4 @@
-package com.aotuman.studydemo.jetpack.company;
+package com.aotuman.studydemo.jetpack.company.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 // todo 不是Jetpack ViewModel类可以拥有LiveData类型的成员变量吗？这样还可以观察到lifeOwner吗？
-public class XWViewModel {
+// 平台基类ViewModel
+public class FormViewModel{
     private String code;
     private String type;
     private int width;
     private int height;
-
     // viewModel里可能不止一种数据要被观察
-    private List<MutableLiveData<Object>> liveDataList = new ArrayList<>();
+    protected List<MutableLiveData<Object>> liveDataList = new ArrayList<>();
 
     public List<MutableLiveData<Object>> getLiveDataList() {
         return liveDataList;
