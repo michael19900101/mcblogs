@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class TextViewModel extends FormViewModel implements SimpleValueProtocol {
-    private final static String TAG = TextViewModel.class.getSimpleName();
+public class FormTextViewModel extends FormViewModel implements SimpleValueProtocol {
+    private final static String TAG = FormTextViewModel.class.getSimpleName();
     private String text;
     // 控件自己维护一份需要提供对外可观察的数据
     private MutableLiveData<Object> liveData = new MutableLiveData<>();
@@ -23,7 +23,7 @@ public class TextViewModel extends FormViewModel implements SimpleValueProtocol 
     // 假设TextViewModel需要从UserRepository取数据
     private UserRepository userRepository = new UserRepository();
 
-    public TextViewModel() {
+    public FormTextViewModel() {
         // 假装15秒之后去请求数据
         new Thread(new Runnable() {
             @Override

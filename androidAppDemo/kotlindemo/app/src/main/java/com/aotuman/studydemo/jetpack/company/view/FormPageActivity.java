@@ -13,10 +13,9 @@ import com.aotuman.studydemo.R;
 import com.aotuman.studydemo.jetpack.company.FormPage;
 import com.aotuman.studydemo.jetpack.company.SimpleValueProtocol;
 import com.aotuman.studydemo.jetpack.company.ViewFactory;
-import com.aotuman.studydemo.jetpack.company.view.FormViewBehavior;
 import com.aotuman.studydemo.jetpack.company.viewmodel.RootPageViewModel;
 import com.aotuman.studydemo.jetpack.company.viewmodel.FormViewModel;
-import com.aotuman.studydemo.jetpack.company.viewmodel.TextViewModel;
+import com.aotuman.studydemo.jetpack.company.viewmodel.FormTextViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,11 +106,11 @@ public class FormPageActivity extends AppCompatActivity {
     // 测试添加ViewModel
     private List<FormViewModel> testAddViewModel(){
         List<FormViewModel> allVMs = new ArrayList<>();
-        TextViewModel textViewModel1 = new TextViewModel();
+        FormTextViewModel textViewModel1 = new FormTextViewModel();
         textViewModel1.setType("text");
         textViewModel1.setCode("tv-001");
         textViewModel1.setText("测试文字001");
-        TextViewModel textViewModel2 = new TextViewModel();
+        FormTextViewModel textViewModel2 = new FormTextViewModel();
         textViewModel2.setType("text");
         textViewModel2.setCode("tv-002");
         textViewModel2.setText("测试文字002");
