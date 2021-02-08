@@ -34,6 +34,9 @@ public class FormPageActivity extends AppCompatActivity {
     // 页面所有动态生成的View
     private Map<String/**ctrlcode*/, View> pageViewMap = new HashMap<>();
 
+    // todo 用于view 操作 viewmodel的一个关系集合Map
+    private Map<String/**ctrlcode*/, FormViewModel> viewModelMap = new HashMap<>();
+
     // 页面上所有自定义的ViewModel
     private List<FormViewModel> allVMs;
 
