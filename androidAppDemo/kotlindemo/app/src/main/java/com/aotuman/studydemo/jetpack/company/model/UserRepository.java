@@ -33,7 +33,7 @@ public class UserRepository {
                 }
                 //假装从服务端获取的
                 List<User> users = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 50; i++) {
                     User user = new User("user"+i, i);
                     users.add(user);
                 }

@@ -13,6 +13,7 @@ import com.aotuman.studydemo.R;
 import com.aotuman.studydemo.jetpack.company.FormPage;
 import com.aotuman.studydemo.jetpack.company.SimpleValueProtocol;
 import com.aotuman.studydemo.jetpack.company.ViewFactory;
+import com.aotuman.studydemo.jetpack.company.viewmodel.FormListViewModel;
 import com.aotuman.studydemo.jetpack.company.viewmodel.RootPageViewModel;
 import com.aotuman.studydemo.jetpack.company.viewmodel.FormViewModel;
 import com.aotuman.studydemo.jetpack.company.viewmodel.FormTextViewModel;
@@ -68,7 +69,7 @@ public class FormPageActivity extends AppCompatActivity {
         formPage = new FormPage();
 
         // 解析表单ViewBean属性, 设置PageVM所有viewmodels
-        allVMs = testAddViewModel();
+        allVMs = testAddViewModel2();
         rootPageViewModel.setViewModels(allVMs);
     }
 
@@ -76,7 +77,7 @@ public class FormPageActivity extends AppCompatActivity {
     private void renderView() {
         for (FormViewModel viewModel : rootPageViewModel.getViewModels()) {
             // 利用工厂模式，根据type动态生成控件View
-            View view = ViewFactory.getView(this, viewModel.getType());
+            View view = ViewFactory.getView(this, viewModel, this);
             pageViewMap.put(viewModel.getCode(), view);
 
             // 添加view到父布局
@@ -117,6 +118,21 @@ public class FormPageActivity extends AppCompatActivity {
         allVMs.add(textViewModel1);
         allVMs.add(textViewModel2);
         return allVMs;
+    }
+
+    private List<FormViewModel> testAddViewModel2(){
+        List<FormViewModel> allVMs = new ArrayList<>();
+        allVMs.add(testAddListViewModel());
+        return allVMs;
+    }
+
+    // 测试添加列表控件
+    private FormViewModel testAddListViewModel() {
+        FormListViewModel listViewModel = new FormListViewModel();
+        listViewModel.setType("list");
+        listViewModel.setCode("list-001");
+        listViewModel.setChildVMs(testAddViewModel());
+        return listViewModel;
     }
 
     private void testUpdateVMData(){
