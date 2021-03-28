@@ -1,5 +1,6 @@
 package com.aotuman.studydemo.arraymap;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.Log;
@@ -7,13 +8,12 @@ import android.util.SparseArray;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.aotuman.studydemo.R;
 
 import java.util.HashMap;
 
-public class ArrayMapActivity extends AppCompatActivity {
+public class ArrayMapActivity extends Activity {
 
     private static final int MAX = 10000;
     private static final String TAG = "ArrayMapActivity";
@@ -26,24 +26,7 @@ public class ArrayMapActivity extends AppCompatActivity {
         findViewById(R.id.btn_addarraymap).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SparseArray<String> stringSparseArray = new SparseArray<>();
-                stringSparseArray.put(1,"a");
-                stringSparseArray.put(5,"e");
-                stringSparseArray.put(4,"d");
-                stringSparseArray.put(10,"h");
-                stringSparseArray.put(2,null);
-
-                stringSparseArray.put(11,"a");
-                stringSparseArray.put(12,"e");
-                stringSparseArray.put(13,"d");
-                stringSparseArray.put(14,"h");
-                stringSparseArray.put(15,"a");
-                stringSparseArray.put(16,"e");
-                stringSparseArray.put(17,"d");
-                stringSparseArray.put(18,"h");
-                stringSparseArray.put(19,"h");
-
-                Log.d(TAG, "onCreate() called with: stringSparseArray = [" + stringSparseArray + "]");
+                testAddSparseArray();
             }
         });
 
@@ -112,6 +95,26 @@ public class ArrayMapActivity extends AppCompatActivity {
             String key = arrayMap.keyAt(i);
             String value = arrayMap.valueAt(i);
         }
+    }
+
+    private void testAddSparseArray() {
+        SparseArray<String> stringSparseArray = new SparseArray<>();
+        stringSparseArray.put(1,"a");
+        stringSparseArray.put(5,"e");
+        stringSparseArray.put(4,"d");
+        stringSparseArray.put(10,"h");
+        stringSparseArray.put(2,null);
+        stringSparseArray.put(11,"a");
+        stringSparseArray.put(12,"e");
+        stringSparseArray.put(13,"d");
+        stringSparseArray.put(14,"h");
+        stringSparseArray.put(15,"a");
+        stringSparseArray.put(16,"e");
+        stringSparseArray.put(17,"d");
+        stringSparseArray.put(18,"h");
+        stringSparseArray.put(19,"h");
+
+        Log.d(TAG, "onCreate() called with: stringSparseArray = [" + stringSparseArray + "]");
     }
 
 }
