@@ -119,11 +119,7 @@
         <activity android:name=".jetpack.company.view.FormPageActivity">
         </activity>
         <activity android:name=".jetpack.company.FormFirstActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--mvp demo-->
@@ -131,8 +127,8 @@
         </activity>
 
         <!--databing demo-->
-        <activity android:name=".jetpack.databinding.DataBindingLearningActivity">
-        </activity>
+        <!--<activity android:name=".jetpack.databinding.DataBindingLearningActivity">
+        </activity>-->
 
         <!--dagger demo-->
         <activity android:name=".dagger2stu.astudy.AstudyActivity">
@@ -140,6 +136,15 @@
         <activity android:name=".dagger2stu.bstudy.BstudyActivity">
         </activity>
         <activity android:name=".dagger2stu.cstudy.CstudyActivity">
+        </activity>
+
+
+        <activity android:name="com.aotuman.studydemo.arraymap.ArrayMapActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
