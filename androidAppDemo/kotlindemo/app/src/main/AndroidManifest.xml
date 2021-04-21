@@ -27,6 +27,13 @@
         <activity android:name=".handler.HandlerDemoActivity">
 
         </activity>
+        <activity android:name=".handler.barrier.HandlerBarrierActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".glide.GlideMainActivity"></activity>
         <activity android:name=".glide.recyclerview.GlideRvActvity"></activity>
         <activity
@@ -140,11 +147,7 @@
 
 
         <activity android:name="com.aotuman.studydemo.arraymap.ArrayMapActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
